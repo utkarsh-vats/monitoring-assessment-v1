@@ -1,0 +1,68 @@
+{
+  "title": "AI Platform Observability - Observable AI Backend Service",
+  "uid": "ai-backend-service",
+  "schemaVersion": 38,
+  "refresh": "5s",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Total HTTP Requests",
+      "gridPos": {"x": 0, "y": 0, "w": 6, "h": 4},
+      "targets": [{"expr": "sum(http_requests_total)", "legendFormat": "Total Requests"}],
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}}}
+    },
+    {
+      "type": "stat",
+      "title": "Total Business Tickets Created",
+      "gridPos": {"x": 6, "y": 0, "w": 6, "h": 4},
+      "targets": [{"expr": "sum(business_actions_total)", "legendFormat": "Tickets Created"}],
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}}}
+    },
+    {
+      "type": "stat",
+      "title": "AI Tokens Consumed",
+      "gridPos": {"x": 12, "y": 0, "w": 6, "h": 4},
+      "targets": [{"expr": "sum(ai_token_usage_total)", "legendFormat": "Tokens"}],
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}}}
+    },
+    {
+      "type": "stat",
+      "title": "Application Exceptions",
+      "gridPos": {"x": 18, "y": 0, "w": 6, "h": 4},
+      "targets": [{"expr": "sum(app_exceptions_total) or vector(0)", "legendFormat": "Errors"}],
+      "fieldConfig": {"defaults": {"color": {"mode": "thresholds"}}}
+    },
+    {
+      "type": "timeseries",
+      "title": "HTTP Request Rate by Endpoint & Status",
+      "gridPos": {"x": 0, "y": 4, "w": 12, "h": 8},
+      "targets": [
+        {"expr": "rate(http_requests_total[1m])", "legendFormat": "{{method}} {{endpoint}} [{{status_code}}]"}
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "HTTP p95 Request Latency (s)",
+      "gridPos": {"x": 12, "y": 4, "w": 12, "h": 8},
+      "targets": [
+        {"expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[1m])) by (le, endpoint))", "legendFormat": "p95 {{endpoint}}"}
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "AI Inference Duration p95 Latency (s)",
+      "gridPos": {"x": 0, "y": 12, "w": 12, "h": 8},
+      "targets": [
+        {"expr": "histogram_quantile(0.95, sum(rate(ai_inference_duration_seconds_bucket[1m])) by (le, model))", "legendFormat": "{{model}} p95"}
+      ]
+    },
+    {
+      "type": "barchart",
+      "title": "Incident Tickets Created by Severity",
+      "gridPos": {"x": 12, "y": 12, "w": 12, "h": 8},
+      "targets": [
+        {"expr": "sum by (severity) (business_actions_total)", "legendFormat": "{{severity}}"}
+      ]
+    }
+  ]
+}

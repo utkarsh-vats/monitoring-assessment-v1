@@ -1,0 +1,241 @@
+{
+	"info": {
+		"_postman_id": "bd3e6aa5-8792-451e-ad3a-55262f08482a",
+		"name": "FuildAI_Assessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11649124"
+	},
+	"item": [
+		{
+			"name": "ENDPOINT-'/ask'-SUCCESS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Request-ID",
+						"value": "{{request_id}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"question\": \"High memory utilization alerts on worker pod order-processor-8f4b after latest deployment.\",\r\n    \"context\": {\r\n        \"environment\": \"production\",\r\n        \"service\": \"order-processor\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/ask",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ask"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ENDPOINT-'/ask'-SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Request-ID",
+								"value": "{{request_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": \"High memory utilization alerts on worker pod order-processor-8f4b after latest deployment.\",\r\n    \"context\": {\r\n        \"environment\": \"production\",\r\n        \"service\": \"order-processor\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/ask",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ask"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Wed, 08 Jul 2026 19:25:56 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "1494"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "x-request-id",
+							"value": "demo-req-golden-001"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"request_id\": \"demo-req-golden-001\",\n    \"status\": \"success\",\n    \"data\": {\n        \"question\": \"High memory utilization alerts on worker pod order-processor-8f4b after latest deployment.\",\n        \"ai_analysis\": {\n            \"summary\": \"An incident ticket has been created for the high memory utilization on the `order-processor` worker pod after the latest deployment.\\n\\n**Incident Ticket Details:**\\n*   **Ticket ID:** INC-15CE21\\n*   **Service:** order-processor\\n*   **Severity:** HIGH\\n*   **Summary:** High memory utilization on order-processor worker pod after latest deployment\\n*   **Recommended Action:** Investigate recent deployment for memory leaks or resource misconfiguration; consider rolling back if necessary.\\n\\nPlease monitor the situation and proceed with the recommended action.\",\n            \"root_cause_hypothesis\": \"Analyzed via live AI tool-calling workflow.\",\n            \"recommended_action\": \"Investigate recent deployment for memory leaks or resource misconfiguration; consider rolling back if necessary.\"\n        },\n        \"business_action\": {\n            \"action_type\": \"CREATE_INCIDENT_TICKET\",\n            \"ticket_id\": \"INC-15CE21\",\n            \"service\": \"order-processor\",\n            \"severity\": \"HIGH\",\n            \"summary\": \"High memory utilization on order-processor worker pod after latest deployment\",\n            \"recommended_action\": \"Investigate recent deployment for memory leaks or resource misconfiguration; consider rolling back if necessary.\",\n            \"status\": \"CREATED\"\n        },\n        \"model_used\": \"gemini-2.5-flash\",\n        \"tokens_used\": 390,\n        \"execution_metadata\": {\n            \"model_used\": \"gemini-2.5-flash\",\n            \"tokens_used\": 390,\n            \"processing_time_ms\": 5532.57\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "ENDPOINT-'/ask'-FAILURE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Request-ID",
+						"value": "{{request_id_fault}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Inject-Fault",
+						"value": "llm_timeout",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"question\": \"Database connection pool exhausted on checkout service.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/ask",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ask"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ENDPOINT-'/ask'-FAILURE",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Request-ID",
+								"value": "{{request_id_fault}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Inject-Fault",
+								"value": "llm_timeout",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": \"Database connection pool exhausted on checkout service.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/ask",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ask"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Wed, 08 Jul 2026 19:29:48 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "x-request-id",
+							"value": "demo-req-fault-500"
+						},
+						{
+							"key": "content-length",
+							"value": "140"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Internal Server Error\",\n    \"message\": \"Simulated LLM Provider Timeout (Injected Fault: llm_timeout)\",\n    \"request_id\": \"demo-req-fault-500\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8002",
+			"type": "string"
+		},
+		{
+			"key": "request_id",
+			"value": "demo-req-golden-001",
+			"type": "string"
+		},
+		{
+			"key": "request_id_fault",
+			"value": "demo-req-fault-500",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,46 @@
+# Virtual Environments
+venv/
+/venv
+env/
+ENV/
+
+# Environment Variables & Secrets (Keep .env.example)
+.env
+.env*
+!.env.example
+
+# Python Cache & Build Artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Testing & Linting Caches
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Project Specific & Scratch Documents
+project_plan.md
+project_requirements.md
+postman_tests.md
+requirements.local.txt
+celerybeat-schedule*
+text.txt
+/project-plan/
+project-plan/
+/local_docs/
+local_docs/
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.ipynb_checkpoints/
